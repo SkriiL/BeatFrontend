@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {BeatsService} from './services/beats.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {AppRoutingModule} from './app-routing.module';
   ],
   providers: [
     BeatsService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

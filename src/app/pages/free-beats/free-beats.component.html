@@ -23,6 +23,8 @@
       <label for="email">Email</label>
       <input type="email" class="form-control" id="email" [formControl]="email">
     </div>
-    <button class="btn btn-outline-primary w-100" [disabled]="selectionsLeft > 0">Get your free beats</button>
+    <button class="btn btn-outline-primary w-100" [disabled]="selectionsLeft > 0" (click)="signUp()">
+      Get your free beats
+    </button>
   </div>
 </div>

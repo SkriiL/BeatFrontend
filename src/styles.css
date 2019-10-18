@@ -13,6 +13,10 @@
   box-shadow: 0px 0px 10px dodgerblue;
 }
 
+.card-selected:hover {
+  box-shadow: none;
+}
+
 .vertical-scroll {
   overflow-x: hidden;
   overflow-y: scroll;
