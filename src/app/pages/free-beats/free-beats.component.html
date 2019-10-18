@@ -1,0 +1,28 @@
+<div class="container-fluid mt-3 row">
+  <div class="col-9 vertical-scroll">
+    <h5 *ngIf="selectionsLeft > 0">You can pick {{ selectionsLeft }} more free beats</h5>
+    <h5 *ngIf="selectionsLeft === 0">You don't have any free beats left</h5>
+    <div class="row mt-3">
+      <div class="col-4" *ngFor="let beat of beats$ | async">
+        <div [id]="beat.id" class="card card-selectable bg-dark" (click)="selectBeat(beat)">
+          <div class="card-body text-light">
+            <h5 class="card-title">{{ beat.name }}</h5>
+            <span>{{ beat.type.name }} - {{ beat.bpm }} bpm</span>
+          </div>
+          <iframe width="100%" height="100%" frameborder="top" [src]="sanitizer.bypassSecurityTrustResourceUrl(beat.url)"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="name" [formControl]="name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" [formControl]="email">
+    </div>
+    <button class="btn btn-outline-primary w-100" [disabled]="selectionsLeft > 0">Get your free beats</button>
+  </div>
+</div>
