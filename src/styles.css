@@ -21,3 +21,15 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
+.bg-soundcloud {
+  background-color: #ff7700;
+}
+
+.mouse-pointer {
+
+}
+
+.mouse-pointer:hover {
+  cursor: pointer;
+}

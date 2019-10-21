@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BeatsService} from '../../services/beats.service';
+import {BeatService} from '../../services/beat.service';
 import {Observable} from 'rxjs';
 import {Beat} from '../../models/beat';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -22,7 +22,7 @@ export class FreeBeatsComponent implements OnInit {
   email = new FormControl('');
 
   constructor(
-    private beatsService: BeatsService,
+    private beatsService: BeatService,
     private userService: UserService,
     public sanitizer: DomSanitizer,
   ) {
@@ -37,6 +37,7 @@ export class FreeBeatsComponent implements OnInit {
       id: -1,
       name: this.name.value,
       email: this.email.value,
+      sendMails: true,
     };
     this.userService.create(user);
   }

@@ -1,0 +1,84 @@
+<div *ngIf="standalone">
+  <div class="container-fluid mt-3 row ml-2">
+    <div class="col-8 vertical-scroll">
+      <table class="table-striped table-dark w-100">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">BPM</th>
+          <th scope="col">Price</th>
+          <th scope="col">Type</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let beat of beats$ | async" (click)="selectBeat(beat)">
+          <td>{{ beat.name }}</td>
+          <td>{{ beat.bpm }}</td>
+          <td>{{ beat.price }}</td>
+          <td>{{ beat.type.name }}</td>
+          <td>
+            <button class="btn btn-transparent btn-sm" (click)="delete(beat)"><i class="fa fa-trash-alt text-danger"></i></button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4 text-light">
+      <h5 *ngIf="selectedBeat == null">Create new beat</h5>
+      <h5 *ngIf="selectedBeat != null">Modify '{{ selectedBeat.name }}'</h5>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" class="form-control" [formControl]="nameControl">
+      </div>
+      <div class="form-group">
+        <label for="path">Path</label>
+        <input id="path" class="form-control" [formControl]="pathControl">
+      </div>
+      <div class="form-group">
+        <label for="url">URL</label>
+        <input id="url" class="form-control" [formControl]="urlControl">
+      </div>
+      <div class="form-group">
+        <label for="bpm">BPM</label>
+        <input type="number" id="bpm" class="form-control" [formControl]="bpmControl">
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input id="price" class="form-control" [formControl]="priceControl">
+      </div>
+      <div class="form-group">
+        <label for="type">Type</label>
+        <select id="type" class="form-control" [formControl]="typeControl">
+          <option disabled>Select type ...</option>
+          <option *ngFor="let type of beatTypes$ | async" [value]="type.id">{{ type.name }}</option>
+        </select>
+      </div>
+      <div class="justify-content-between d-flex">
+        <button class="btn btn-outline-light w-50">Reset</button>
+        <button class="btn btn-outline-primary w-50" (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div *ngIf="!standalone">
+  <table class="table-striped table-dark w-100">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">BPM</th>
+      <th scope="col">Price</th>
+      <th scope="col">Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let beat of beats$ | async">
+      <td>{{ beat.name }}</td>
+      <td>{{ beat.bpm }}</td>
+      <td>{{ beat.price }}</td>
+      <td>{{ beat.type.name }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

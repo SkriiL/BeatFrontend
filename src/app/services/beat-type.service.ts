@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import {User} from '../models/user';
 import {HttpService} from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class BeatTypeService {
 
   constructor(
     private http: HttpService,
   ) { }
 
-  create(user: User) {
-    return this.http.post('users/create', user).subscribe();
+  getAll() {
+    return this.http.get('beatTypes/all');
   }
 }
