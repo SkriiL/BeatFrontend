@@ -5,6 +5,7 @@ import {Beat} from '../../../models/beat';
 import {map} from 'rxjs/internal/operators';
 import {FormControl} from '@angular/forms';
 import {BeatTypeService} from '../../../services/beat-type.service';
+import {File} from '../../../models/file';
 
 @Component({
   selector: 'app-admin-beats',
@@ -30,6 +31,7 @@ export class AdminBeatsComponent implements OnInit {
   public bpmControl = new FormControl(0);
   public priceControl = new FormControl();
   public typeControl = new FormControl();
+  public file: string | undefined;
 
   public standalone = true;
   public beats$: Observable<Beat[]>;
@@ -47,6 +49,16 @@ export class AdminBeatsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  fileInput(files: FileList) {
+    const reader = new FileReader();
+    const file = files.item(0);
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.file = reader.result;
+      console.log(this.file);
+    };
   }
 
   selectBeat(beat: Beat) {
@@ -69,6 +81,7 @@ export class AdminBeatsComponent implements OnInit {
       price: this.priceControl.value,
       type: undefined,
       typeId: this.typeControl.value,
+      file: this.file,
     };
     if (this.selectedBeat == null) {
       this.beatService.create(beat);

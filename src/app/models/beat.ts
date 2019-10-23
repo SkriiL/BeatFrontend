@@ -9,4 +9,5 @@ export class Beat {
   price: string;
   typeId: number | undefined;
   type: BeatType | undefined;
+  file: string | undefined;
 }

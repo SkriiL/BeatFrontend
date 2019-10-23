@@ -25,7 +25,7 @@
       </table>
     </div>
     <div class="col-4 text-light">
-      <h5 *ngIf="selectedBeat == null">Create new beat</h5>
+      <h5 *ngIf="selectedBeat == null" >Create new beat</h5>
       <h5 *ngIf="selectedBeat != null">Modify '{{ selectedBeat.name }}'</h5>
       <div class="form-group">
         <label for="name">Name</label>
@@ -53,6 +53,10 @@
           <option disabled>Select type ...</option>
           <option *ngFor="let type of beatTypes$ | async" [value]="type.id">{{ type.name }}</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label for="file">Price</label>
+        <input id="file" type="file" class="custom-file" (change)="fileInput($event.target.files)">
       </div>
       <div class="justify-content-between d-flex">
         <button class="btn btn-outline-light w-50">Reset</button>
